@@ -1,5 +1,7 @@
 package View;
 
+import Controller.Dictionary;
+import Controller.ReadFile;
 import Model.BinaryTree;
 import Model.Word;
 
@@ -10,33 +12,31 @@ public class DriverProgram {
         BinaryTree tree = new BinaryTree();
         int op= 1;
         Scanner in= new Scanner(System.in);
+        Dictionary dic= new Dictionary();
         while (op==1){
-            System.out.println("Que desea hacer \n1. Ingresar palabra \n2. Ingresar texto \n3. Traducir palabra \n4. Recorrer diccionario");
+            System.out.println("Que desea hacer: \n1. Cargar diccionario \n2. Ingresar palabra \n3. Cargar texto \n4. Traducir palabra \n5. Recorrer diccionario");
             int choose= in.nextInt();
             in.nextLine();
             switch (choose){
                 case 1:
                     try {
-                        System.out.println("Ingles: ");
-                        String en = in.nextLine();
-                        System.out.println("Español: ");
-                        String es = in.nextLine();
-                        System.out.println("Frances: ");
-                        String fr = in.nextLine();
-                        Word word= new Word(en, es, fr);
-                        tree.insert(word);
+                        dic.FiletoTree("C:\\Users\\Sebastian\\OneDrive - Universidad del Valle de Guatemala\\Escritorio\\POO\\BinaryTree\\dictionary.txt");
+                        System.out.println("Importado correctamente");
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
                     break;
                 case 2:
-
+                    dic.insertWord();
                     break;
                 case 3:
 
                     break;
                 case 4:
-                    tree.show(tree.root);
+                    dic.translate();
+                    break;
+                case 5:
+                    dic.showTree();
                     break;
                 default:
                     System.out.println("No elegiste una de nuestras opciones");
@@ -44,7 +44,7 @@ public class DriverProgram {
             }
 
 
-            System.out.println("SALIDA");
+            System.out.println("Desea seguir? \n1. Si \n2. No");
             op=in.nextInt();
             in.nextLine();
         }

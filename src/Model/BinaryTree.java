@@ -32,11 +32,11 @@ public class BinaryTree{
             return null;
         }
         if (key.equals(node.getValue().getEnglish())){
-            return node.getValue().getEnglish();
+            return "\nEspañol: " + node.getValue().getSpanish() + "\nFrances: " + node.getValue().getFrance();
         } else if (key.equals(node.getValue().getSpanish())) {
-            return node.getValue().getSpanish();
+            return "\nIngles: " + node.getValue().getEnglish() + "\nFrances: " + node.getValue().getFrance();
         } else if (key.equals(node.getValue().getFrance())) {
-            return node.getValue().getFrance();
+            return "\nIngles: " + node.getValue().getEnglish() + "\nEspañol: " + node.getValue().getSpanish();
         }
         if (key.compareTo(node.getValue().getEnglish()) < 0 || key.compareTo(node.getValue().getSpanish()) < 0 || key.compareTo(node.getValue().getFrance()) < 0){
             return searchNode(node.getLeft(), key);
