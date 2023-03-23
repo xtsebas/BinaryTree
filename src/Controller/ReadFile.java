@@ -30,6 +30,22 @@ public class ReadFile {
         }
         return word;
     }
+
+    public static String oration(String fpath){
+        String data = "xd";
+        try {
+            File myObj = new File(fpath);
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine()) {
+                data = myReader.nextLine();
+            }
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+        return data;
+    }
 }
 //CODIGO TOMADO DE LA HOJA DE TRABAJO 2
 //EQUIPO NUMERO 4

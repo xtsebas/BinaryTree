@@ -5,6 +5,8 @@ import Controller.ReadFile;
 import Model.BinaryTree;
 import Model.Word;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class DriverProgram {
@@ -30,7 +32,7 @@ public class DriverProgram {
                     dic.insertWord();
                     break;
                 case 3:
-
+                    dic.translateOration("C:\\Users\\Sebastian\\OneDrive - Universidad del Valle de Guatemala\\Escritorio\\POO\\BinaryTree\\texto.txt");
                     break;
                 case 4:
                     dic.translate();
