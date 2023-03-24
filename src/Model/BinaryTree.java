@@ -30,22 +30,28 @@ public class BinaryTree{
         return searchNode(root, key);
     }
 
-    private String searchNode(Node node, String key){
-        if (node == null){
-            return null;
+    private String searchNode(Node node, String key) {
+        String nodes= null;
+        int count = 0;
+        if (node != null) {
+            if (node.getLeft() != null && nodes ==null) {
+                nodes= searchNode(node.getLeft(), key);
+            }
+            if (key.equals(node.getValue().getEnglish()) && count==0 && nodes ==null) {
+                nodes = "\nEspañol: " + node.getValue().getSpanish() + "\nFrances: " + node.getValue().getFrance();
+                count=1;
+            } else if (key.equals(node.getValue().getSpanish()) && count==0 && nodes ==null) {
+                nodes = "\nIngles: " + node.getValue().getEnglish() + "\nFrances: " + node.getValue().getFrance();
+                count=1;
+            } else if (key.equals(node.getValue().getFrance()) && count==0 && nodes ==null) {
+                nodes = "\nIngles: " + node.getValue().getEnglish() + "\nEspañol: " + node.getValue().getSpanish();
+                count=1;
+            }
+            if (node.getRight() != null && nodes ==null) {
+                nodes = searchNode(node.getRight(), key);
+            }
         }
-        if (key.equals(node.getValue().getEnglish())){
-            return "\nEspañol: " + node.getValue().getSpanish() + "\nFrances: " + node.getValue().getFrance();
-        } else if (key.equals(node.getValue().getSpanish())) {
-            return "\nIngles: " + node.getValue().getEnglish() + "\nFrances: " + node.getValue().getFrance();
-        } else if (key.equals(node.getValue().getFrance())) {
-            return "\nIngles: " + node.getValue().getEnglish() + "\nEspañol: " + node.getValue().getSpanish();
-        }
-        if (key.compareTo(node.getValue().getEnglish()) < 0 || key.compareTo(node.getValue().getSpanish()) < 0 || key.compareTo(node.getValue().getFrance()) < 0){
-            return searchNode(node.getLeft(), key);
-        } else {
-            return searchNode(node.getRight(), key);
-        }
+        return nodes;
     }
 
     public void show(Node root){
@@ -60,41 +66,27 @@ public class BinaryTree{
             }
         }
     }
-    public ArrayList change(Node root, String key){
-        ArrayList translate= new ArrayList<>();
-        if (root.getLeft() != null) {
-            return change(root.getLeft(), key);
+    public String change(Node node, String key){
+        String nodes= null;
+        int count = 0;
+        if (node != null) {
+            if (node.getLeft() != null && nodes ==null) {
+                nodes= change(node.getLeft(), key);
+            }
+            if (key.equals(node.getValue().getEnglish()) && count==0 && nodes ==null) {
+                nodes = node.getValue().getEnglish() + " " + node.getValue().getSpanish() + " " + node.getValue().getFrance();
+                count=1;
+            } else if (key.equals(node.getValue().getSpanish()) && count==0 && nodes ==null) {
+                nodes = node.getValue().getSpanish() + " " + node.getValue().getEnglish() + " " + node.getValue().getFrance();
+                count=1;
+            } else if (key.equals(node.getValue().getFrance()) && count==0 && nodes ==null) {
+                nodes = node.getValue().getFrance() + " " + node.getValue().getEnglish() + " " + node.getValue().getEnglish();
+                count=1;
+            }
+            if (node.getRight() != null && nodes ==null) {
+                nodes = change(node.getRight(), key);
+            }
         }
-        if (root.getValue().getEnglish().equals(key)){
-            translate.add(root.getValue().getEnglish()); translate.add(root.getValue().getSpanish()); translate.add(root.getValue().getFrance());
-            return translate;
-        } else if (root.getValue().getSpanish().equals(key)) {
-            translate.add(root.getValue().getSpanish()); translate.add(root.getValue().getEnglish()); translate.add(root.getValue().getFrance());
-            return translate;
-        } else if (root.getValue().getFrance().equals(key)) {
-            translate.add(root.getValue().getFrance()); translate.add(root.getValue().getEnglish()); translate.add(root.getValue().getSpanish());
-            return translate;
-        }
-        if (root.getRight() != null) {
-            return change(root.getRight(), key);
-        }
-        return translate;
-    }
-
-    public boolean Changebool(String key){
-        return SearchandChange(root, key);
-    }
-    private boolean SearchandChange(Node node, String key){
-        if (node == null){
-            return false;
-        }
-        if (key.equals(node.getValue().getEnglish()) || key.equals(node.getValue().getSpanish()) || key.equals(node.getValue().getFrance())){
-            return true;
-        }
-        if (key.compareTo(node.getValue().getEnglish()) < 0 || key.compareTo(node.getValue().getSpanish()) < 0 || key.compareTo(node.getValue().getFrance()) < 0){
-            return SearchandChange(node.getLeft(), key);
-        } else {
-            return SearchandChange(node.getRight(), key);
-        }
+        return nodes;
     }
 }

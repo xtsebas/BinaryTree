@@ -54,21 +54,34 @@ public class Dictionary {
         }
     }
 
-    public void translateOration(String fpath){
-        ArrayList list = new ArrayList (Arrays.asList(ReadFile.oration(fpath).split(" ")));
-        ArrayList language1= list;
-        ArrayList language2= list;
+    public void translateSentence(String fpath) {
+        ArrayList list = new ArrayList(Arrays.asList((ReadFile.oration(fpath).split(" "))));
+        ArrayList language1 = new ArrayList(list);
+        ArrayList language2 = new ArrayList(list);
         ArrayList array = new ArrayList();
-        for (Object word: list){
-            boolean bool = false;
-            bool = tree.Changebool((String) word);
-            if (bool){
-                for (int i = 0; i < list.size(); i++) {
-                    array= tree.change(tree.root, ((String) list.get(i)).toLowerCase());
+        for (Object word : list) {
+            for (int i = 0; i < list.size(); i++) {
+                if (word == list.get(i)) {
+                    array.add(tree.change(tree.root, ((String) list.get(i)).toLowerCase()));
                 }
             }
         }
-        System.out.println(array);
-
+        for (int i = 0; i < array.size(); i++) {
+            if (array.get(i) != null) {
+                String word = (String) array.get(i);
+                ArrayList provisional = new ArrayList(Arrays.asList(word.split(" ")));
+                for (int j = 0; j < provisional.size(); j++) {
+                    for (int k = 0; k < language1.size(); k++) {
+                        if (language1.get(k).equals(provisional.get(j))) {
+                            language1.set(k, provisional.get(j+1));
+                            language2.set(k, provisional.get(j+2));
+                        }
+                    }
+                    j=3;
+                }
+            }
+        }
+        String sentence= String.join(" ", list) + "\n" + String.join(" ", language1) + "\n" + String.join(" ", language2) ;
+        System.out.println(sentence);
     }
 }

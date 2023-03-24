@@ -44,7 +44,7 @@ public class ReadFile {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-        return data;
+        return data.replace(".", "");
     }
 }
 //CODIGO TOMADO DE LA HOJA DE TRABAJO 2

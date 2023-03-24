@@ -32,7 +32,7 @@ public class DriverProgram {
                     dic.insertWord();
                     break;
                 case 3:
-                    dic.translateOration("C:\\Users\\Sebastian\\OneDrive - Universidad del Valle de Guatemala\\Escritorio\\POO\\BinaryTree\\texto.txt");
+                    dic.translateSentence("C:\\Users\\Sebastian\\OneDrive - Universidad del Valle de Guatemala\\Escritorio\\POO\\BinaryTree\\texto.txt");
                     break;
                 case 4:
                     dic.translate();
