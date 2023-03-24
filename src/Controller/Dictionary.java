@@ -5,14 +5,18 @@ import Model.Word;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class Dictionary {
     private Scanner in = new Scanner(System.in);
     private BinaryTree tree = new BinaryTree();
 
-    public void FiletoTree(String fpath){
+    /**
+     * Transform the text file into a tree
+     */
+    public void FiletoTree(){
+        System.out.println("Ingrese la direccion txt de su diccionario");
+        String fpath= in.nextLine();
         ArrayList<ArrayList<String>> words=ReadFile.text(fpath);
         for (ArrayList language: words){
             String en=null, es=null, fr=null;
@@ -28,10 +32,16 @@ public class Dictionary {
         }
     }
 
+    /**
+     * show the tree
+     */
     public void showTree(){
         tree.show(tree.root);
     }
 
+    /**
+     * insert a word into the tree
+     */
     public void insertWord(){
         System.out.println("Palabra en ingles: ");
         String en= in.nextLine().toLowerCase();
@@ -43,6 +53,9 @@ public class Dictionary {
         tree.insert(word);
     }
 
+    /**
+     * translate a word of the tree
+     */
     public void translate(){
         System.out.println("Cual palabra desea traducir? ");
         String expression=in.nextLine();
@@ -54,7 +67,12 @@ public class Dictionary {
         }
     }
 
-    public void translateSentence(String fpath) {
+    /**
+     * translate a sentence using the words in the tree
+     */
+    public void translateSentence() {
+        System.out.println("Ingrese la direccion txt de su oracion");
+        String fpath= in.nextLine();
         ArrayList list = new ArrayList(Arrays.asList((ReadFile.oration(fpath).split(" "))));
         String lower= (String) list.get(0);
         list.set(0, lower.toLowerCase());

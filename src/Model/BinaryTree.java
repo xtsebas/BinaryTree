@@ -1,8 +1,5 @@
 package Model;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 public class BinaryTree{
     public Node root;
     public BinaryTree(){
@@ -12,6 +9,12 @@ public class BinaryTree{
         root = insertNode(root, word);
     }
 
+    /**
+     * Insert a new node in the specific place that need it
+     * @param node
+     * @param word
+     * @return
+     */
     private Node insertNode (Node node, Word word){
         if (node==null){
             return new Node(word);
@@ -26,10 +29,21 @@ public class BinaryTree{
         return node;
     }
 
+    /**
+     * search a node
+     * @param key
+     * @return
+     */
     public String search(String key){
         return searchNode(root, key);
     }
 
+    /**
+     * Help the search function, look for an equally of the introduce key and a value of the node
+     * @param node
+     * @param key
+     * @return
+     */
     private String searchNode(Node node, String key) {
         String nodes= null;
         int count = 0;
@@ -54,6 +68,10 @@ public class BinaryTree{
         return nodes;
     }
 
+    /**
+     * Show the tree in order
+     * @param root
+     */
     public void show(Node root){
         if (root != null){
             if (root.getLeft() != null) {
@@ -66,6 +84,13 @@ public class BinaryTree{
             }
         }
     }
+
+    /**
+     * Help to translate a sentence, look for an equally of the introduce key and a value of the node, and then change that word in the list
+     * @param node
+     * @param key
+     * @return
+     */
     public String change(Node node, String key){
         String nodes= null;
         int count = 0;

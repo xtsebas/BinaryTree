@@ -1,15 +1,14 @@
 package View;
 
 import Controller.Dictionary;
-import Controller.ReadFile;
 import Model.BinaryTree;
-import Model.Word;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class DriverProgram {
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         BinaryTree tree = new BinaryTree();
         int op= 1;
@@ -24,7 +23,8 @@ public class DriverProgram {
             switch (choose){
                 case 1:
                     try {
-                        dic.FiletoTree("C:\\Users\\Sebastian\\OneDrive - Universidad del Valle de Guatemala\\Escritorio\\POO\\BinaryTree\\dictionary.txt");
+                        //"C:\\Users\\Sebastian\\OneDrive - Universidad del Valle de Guatemala\\Escritorio\\POO\\BinaryTree\\dictionary.txt"
+                        dic.FiletoTree();
                         System.out.println("Importado correctamente");
                     } catch (Exception e) {
                         throw new RuntimeException(e);
@@ -34,7 +34,8 @@ public class DriverProgram {
                     dic.insertWord();
                     break;
                 case 3:
-                    dic.translateSentence("C:\\Users\\Sebastian\\OneDrive - Universidad del Valle de Guatemala\\Escritorio\\POO\\BinaryTree\\texto.txt");
+                    //C:\Users\Sebastian\OneDrive - Universidad del Valle de Guatemala\Escritorio\POO\BinaryTree\texto.txt
+                    dic.translateSentence();
                     break;
                 case 4:
                     dic.translate();
@@ -56,6 +57,9 @@ public class DriverProgram {
         }
     }
 
+    /**
+     * Menu
+     */
     public static void start(){
         System.out.println("Bienvenido a su programa de busqueda de palabras en ingles\n***** Este programa utiliza arboles binarios*******\n \n/////////////////////////////////// \n");
     }

@@ -31,6 +31,11 @@ public class ReadFile {
         return word;
     }
 
+    /**
+     * Transform a sentence in a txt into a string
+     * @param fpath
+     * @return
+     */
     public static String oration(String fpath){
         String data = "xd";
         try {
