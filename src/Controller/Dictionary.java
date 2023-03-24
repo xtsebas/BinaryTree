@@ -50,12 +50,14 @@ public class Dictionary {
         if (result==null){
             System.out.println("La palabra " + expression.toLowerCase() + " no esta agregada en el diccionario");
         }else {
-            System.out.println("Su palabra: " + expression + result);
+            System.out.println(result);
         }
     }
 
     public void translateSentence(String fpath) {
         ArrayList list = new ArrayList(Arrays.asList((ReadFile.oration(fpath).split(" "))));
+        String lower= (String) list.get(0);
+        list.set(0, lower.toLowerCase());
         ArrayList language1 = new ArrayList(list);
         ArrayList language2 = new ArrayList(list);
         ArrayList array = new ArrayList();
@@ -66,22 +68,29 @@ public class Dictionary {
                 }
             }
         }
+        String sentence="";
         for (int i = 0; i < array.size(); i++) {
             if (array.get(i) != null) {
                 String word = (String) array.get(i);
                 ArrayList provisional = new ArrayList(Arrays.asList(word.split(" ")));
                 for (int j = 0; j < provisional.size(); j++) {
                     for (int k = 0; k < language1.size(); k++) {
-                        if (language1.get(k).equals(provisional.get(j))) {
-                            language1.set(k, provisional.get(j+1));
-                            language2.set(k, provisional.get(j+2));
+                        if (language1.get(k).equals(provisional.get(j+1))) {
+                            language1.set(k, provisional.get(j+2));
+                            language2.set(k, provisional.get(j+3));
                         }
                     }
-                    j=3;
+                    if (provisional.get(0).equals("ingles")){
+                        sentence= "La oracion: " + String.join(" ", list) + ", esta en ingles" + "\nEspañol: " + String.join(" ", language1) + "\nFrances: " + String.join(" ", language2) ;
+                    } else if (provisional.get(0).equals("espanol")) {
+                        sentence= "La oracion: " + String.join(" ", list) + ", esta en español" + "\nIngles: " + String.join(" ", language1) + "\nFrances: " + String.join(" ", language2) ;
+                    } else {
+                        sentence= "La oracion: " + String.join(" ", list) + ", esta en frances" + "\nIngles: " + String.join(" ", language1) + "\nEspañol: " + String.join(" ", language2) ;
+                    }
+                    j=4;
                 }
             }
         }
-        String sentence= String.join(" ", list) + "\n" + String.join(" ", language1) + "\n" + String.join(" ", language2) ;
         System.out.println(sentence);
     }
 }

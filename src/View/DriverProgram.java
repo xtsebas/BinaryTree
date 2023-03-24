@@ -15,10 +15,12 @@ public class DriverProgram {
         int op= 1;
         Scanner in= new Scanner(System.in);
         Dictionary dic= new Dictionary();
+        start();
         while (op==1){
             System.out.println("Que desea hacer: \n1. Cargar diccionario \n2. Ingresar palabra \n3. Cargar texto \n4. Traducir palabra \n5. Recorrer diccionario");
             int choose= in.nextInt();
             in.nextLine();
+            System.out.println(" ");
             switch (choose){
                 case 1:
                     try {
@@ -38,6 +40,7 @@ public class DriverProgram {
                     dic.translate();
                     break;
                 case 5:
+                    System.out.println("Ingles   ||   Español   ||   Frances");
                     dic.showTree();
                     break;
                 default:
@@ -46,9 +49,14 @@ public class DriverProgram {
             }
 
 
-            System.out.println("Desea seguir? \n1. Si \n2. No");
+            System.out.println("\nDesea seguir? \n1. Si \n2. No");
             op=in.nextInt();
             in.nextLine();
+            System.out.println(" ");
         }
+    }
+
+    public static void start(){
+        System.out.println("Bienvenido a su programa de busqueda de palabras en ingles\n***** Este programa utiliza arboles binarios*******\n \n/////////////////////////////////// \n");
     }
 }
